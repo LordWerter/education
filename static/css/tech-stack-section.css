@@ -1,0 +1,102 @@
+.core-tech-stack {
+    display: flex;
+
+    position: relative;
+    height: 167px;
+}
+
+.core-tech-stack__technology {
+    width: 20%;
+}
+
+.technology-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+.technology-card__hover-effect {
+    position: absolute;
+    top: -10px;
+    left: 0px;
+    width: 100%;
+    height: 3px;
+    filter: blur(6px);
+    opacity: 0.4;
+    background: #fff;
+    z-index: 2;
+    transition: all 1s linear;
+}
+
+.technology-card:hover .technology-card__hover-effect {
+    top: 101%;
+}
+
+.technology-card__title {
+    font-size: 24px;
+}
+
+.technology-card__preview-img {
+    height: 140px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.technology-card__preview-img.is-html5 {
+    background-image: url('../images/technologies/html5.svg');
+}
+
+.technology-card__preview-img.is-css3 {
+    background-image: url('../images/technologies/css3.svg');
+}
+
+.technology-card__preview-img.is-javascript {
+    background-image: url('../images/technologies/javascript.svg');
+}
+
+.technology-card__preview-img.is-reactjs {
+    background-image: url('../images/technologies/react.svg');
+}
+
+.technology-card__preview-img.is-nextjs {
+    background-image: url('../images/technologies/nextjs.svg');
+}
+
+.bird {
+    position: absolute;
+    top: -80px;
+    left: -80px;
+    z-index: 2;
+
+    width: 80px;
+    height: 80px;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('../images/bird.avif');
+
+    animation: bird_fly 3s ease-out 1;
+}
+
+@keyframes bird_fly {
+    0% {
+        top: -80px;
+        left: -80px;
+    }
+    50% {
+        top: calc(100% - 80px);
+        left: 50%;
+    }
+    100% {
+        top: -80px;
+        left: calc(100% + 80px);
+    }
+}

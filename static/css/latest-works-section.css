@@ -1,0 +1,46 @@
+.my-latest-works {
+    display: flex;
+    flex-direction: column;
+}
+
+.my-latest-works__minicards-area {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.work-minicard {
+    width: calc(100% / 3);
+    box-sizing: border-box;
+    padding: 12px;
+}
+
+.work-minicard__preview-img {
+    height: 260px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.work-minicard__preview-img.is-work1 {
+    background-image: url('../images/works/work1.png');
+}
+
+.work-minicard__preview-img.is-work2 {
+    background-image: url('../images/works/work2.png');
+}
+
+.work-minicard__preview-img.is-work3 {
+    background-image: url('../images/works/work3.png');
+}
+
+.work-minicard__preview-img.is-work4 {
+    background-image: url('../images/works/work4.png');
+}
+
+.work-minicard__preview-img.is-work5 {
+    background-image: url('../images/works/work5.png');
+}
+
+.work-minicard__preview-img.is-work6 {
+    background-image: url('../images/works/work1.png');
+}
