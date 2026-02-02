@@ -31,9 +31,21 @@ const myObj1Copy2 = JSON.parse(JSON.stringify(myObj1));
 const myObj1Copy4 = structuredClone(myObj1);
 
 // Что такое функция-конструктор?
+function User(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
 
 // Что такое прототипное наследование?
+const animal = {
+  canJump: false,
+};
 
+const rabbit = {
+  __proto__: animal,
+};
+
+console.log('rabbit.canJump - ', rabbit.canJump);
 // Как работает __proto__?
 
 // Почему наедаются оба хомяка?
@@ -47,10 +59,12 @@ let hamster = {
 };
 
 let speedy = {
+  stomach: [],
   __proto__: hamster
 };
 
 let lazy = {
+  stomach: [],
   __proto__: hamster
 };
 
@@ -63,6 +77,12 @@ console.log('speedy.stomach - ', lazy.stomach); // apple
 
  */
 // Спросить команды git
+git init
+
+git checkout -b feat/FE-102
+
+git checkout master
+
 
 /**
  * <=== КОНЕЦ Задачи для проверки
