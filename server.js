@@ -22,13 +22,16 @@ http
 
         let filePath = "." + request.url;
         if (filePath == "./") {
-        filePath = "./static/index.html";
+            filePath = "./static/index.html";
         }
         if(
             filePath.startsWith('./css') 
             || filePath.startsWith('./images') 
             || filePath.startsWith('./fonts') 
             || filePath.startsWith('./js')
+            || filePath.startsWith('./about')
+            || filePath.startsWith('./game')
+            || filePath.startsWith('./contacts')
         ) {
             filePath = './static' + request.url;
         }

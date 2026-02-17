@@ -18,13 +18,13 @@
   <body>
     <header class="page-header">
         <div class="page-header__logo logo">
-          <a href="./index.html"></a>
+          <a href="./"></a>
         </div>
         <nav class="page-header__main-nav main-nav">
-            <menu class="header-menu">
-                <li class="header-menu__element"><a href="./about.html">О нас</a></li>
-                <li class="header-menu__element"><a href="">Направления</a></li>
-                <li class="header-menu__element"><a href="">Контакты</a></li>
+            <menu id="erty-oiuy" class="header-menu">
+                <li class="header-menu__element is-active"><a href="./about.html">О нас</a></li>
+                <li class="header-menu__element"><a href="./game.html">Игра</a></li>
+                <li class="header-menu__element"><a href="./contacts.html">Контакты</a></li>
             </menu>
         </nav>
     </header>
@@ -42,7 +42,7 @@
       </section>
       <section class="core-tech-stack">
         <div class="bird"></div>
-        <div class="core-tech-stack__technology technology-card">
+        <div class="core-tech-stack__technology technology-card is-active">
           <div class="technology-card__hover-effect"></div>
           <div class="technology-card__preview-img is-html5"></div>
           <h3 class="technology-card__title">HTML5</h3>
@@ -99,7 +99,11 @@
           </div>
         </div>
       </section>
-      <section id="feedbacks" class="info-block"></section>
+      <section id="feedbacks" class="info-block">
+        <div id="parent-node">
+          <div id="point-node">point node</div>
+        </div>
+      </section>
     </main>
     <footer>
         <p>this is footer</p>

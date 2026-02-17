@@ -4,8 +4,9 @@ header {
   align-items: center;
 
   position: fixed;
-  left: 50%;
-  margin-left: -800px;
+  left: 0;
+  top: 0;
+  right: 0;
 
   padding: 4px 42px;
   box-sizing: border-box;
@@ -14,7 +15,6 @@ header {
   box-shadow: 0 0 8px #ccc;
 
   width: 100%;
-  max-width: 1600px;
 }
 
 .logo {
@@ -59,4 +59,24 @@ header {
 
 .header-menu__element a {
   color: #000;
+}
+
+@media (min-width: 769px) {
+  
+}
+
+@media (min-width: 1200px) {
+  
+}
+
+@media (min-width: 1600px) {
+  header {
+    position: fixed;
+    left: 50%;
+    margin-left: -700px;
+
+    width: 100%;
+    max-width: 1400px;
+  }
+
 }

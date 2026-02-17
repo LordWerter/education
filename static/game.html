@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>HTML + CSS</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/game.css" />
+  </head>
+  <body>
+      <div class="game-stage">
+        <div class="menu-panel">
+          <button id="show-menu-btn">Menu</button>
+          <div class="menu-btns-container is-hidden">
+            <button class="new-game-btn">New game</button>
+            <button class="exit-btn">Exit</button>
+          </div>
+        </div>
+        <div class="game-status-panel">
+          <div>Character status: <span class="character-status">Idle</span></div>
+          <div>Health: <span class="health">60%</span></div>
+          <div>Delight: <span class="delight">100%</span></div>
+        </div>
+        <div class="burger"></div>
+        <div class="character">
+          <div class="shadow"></div>
+          <div class="body-part left-hand"></div>
+          <div class="body-part left-leg"></div>
+          <div class="body-part body"></div>
+          <div class="body-part right-hand"></div>
+          <div class="body-part right-leg"></div>
+          <div class="eye is-hidden"></div>
+          <div class="dialog-cloud">
+          </div>
+          <div class="sleep-cloud is-hidden">
+            <span class="first-Z">z</span>
+            <span class="second-Z">z</span>
+            <span class="third-Z">z</span>
+          </div>
+        </div>
+        <div class="actions-panel">
+          <button class="action-with-hero eat-action">Eat</button>
+          <button class="action-with-hero walk-action">Walk</button>
+          <button class="action-with-hero sleep-action">Sleep</button>
+        </div>
+      </div>
+      <script src="js/game.js"></script>
+  </body>
+</html>

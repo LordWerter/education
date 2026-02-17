@@ -1,0 +1,243 @@
+.game-stage {
+    position: relative;
+    overflow: hidden;
+    width: 800px;
+    height: 600px;
+
+background: #21c0ff;
+background: linear-gradient(
+    180deg,
+    rgba(33, 192, 255, 1) 0%,
+    rgba(124, 205, 178, 1) 79%, 
+    rgba(0, 176, 15, 1) 86%
+    );
+}
+
+.actions-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.menu-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.menu-btns-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 160px;
+}
+
+.is-hidden {
+    display: none;
+}
+
+.character {
+    position: absolute;
+    top: 240px;
+    left: 252px;
+    width: 308px;
+    height: 360px;
+}
+
+.body-part {
+    position: absolute;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.body {
+    top: 0;
+    left: 0;
+    width: 308px;
+    height: 278px;
+
+    background-image: url('../images/character/body.png');
+}
+
+.right-leg {
+    top: 212px;
+    left: 136px;
+    width: 61px;
+    height: 88px;
+
+    background-image: url('../images/character/rightLeg.png');
+}
+
+.left-leg {
+    top: 218px;
+    left: 68px;
+    width: 62px;
+    height: 81px;
+
+    background-image: url('../images/character/leftLeg.png');
+}
+
+.right-hand {
+    top: 154px;
+    left: 80px;
+    width: 63px;
+    height: 60px;
+
+    background-image: url('../images/character/rightArm.png');
+}
+
+.left-hand {
+    top: 122px;
+    left: 16px;
+    width: 72px;
+    height: 69px;
+
+    background-image: url('../images/character/leftArm.png');
+}
+
+.shadow {
+    position: absolute;
+    top: 256px;
+    left: 32px;
+    width: 250px;
+	height: 74px;
+	background: rgba(111, 111, 111, 0.294);
+	-moz-border-radius: 130px / 40px;
+	-webkit-border-radius: 130px / 40px;
+	border-radius: 130px / 40px;
+}
+
+.eye {
+    position: absolute;
+    top: 28px;
+    left: 96px;
+
+    width: 38px;
+	height: 34px;
+
+    background: #3c8c55;
+    border-radius: 50%;
+}
+
+.sleep-cloud {
+    position: absolute;
+    top: -30px;
+    left: 174px;
+    width: 140px;
+    height: 80px;
+}
+
+.first-Z {
+    position: absolute;
+    top: 60px;
+}
+
+.second-Z {
+    position: absolute;
+    top: 40px;
+    left: 18px;
+    font-size: 24px;
+}
+
+.third-Z {
+    position: absolute;
+    left: 36px;
+    font-size: 52px;
+}
+
+.burger {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: -50px;
+
+    width: 50px;
+    height: 50px;
+
+    background-image: url('../images/burger.png');
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.is-burger-fly {
+    animation: burger-fly linear 2s;
+}
+
+@keyframes burger-fly {
+/* 0ms */
+    0% {
+        opacity: 0;
+        left: -50px;
+    }
+/* 500ms */
+    25% {
+        opacity: 1;
+    }
+/* 1800ms */
+    90% {
+        opacity: 1;
+        left: 280px;
+    }
+/* 2000ms */
+    100% {
+        opacity: 0;
+        left: 290px;
+    }
+}
+
+.is-left-leg-step {
+    animation: is-left-leg-step linear 2s infinite;
+}
+
+@keyframes is-left-leg-step {
+    0% {
+        top: 218px;
+    }
+    25% {
+        top: 210px;
+    }
+    50% {
+        top: 218px;
+    }
+    100% {
+        top: 218px;
+    }
+}
+
+.is-right-leg-step {
+    animation: is-right-leg-step linear 2s infinite;
+}
+
+@keyframes is-right-leg-step {
+    0% {
+        top: 212px;
+    }
+    50% {
+        top: 212px;
+    }
+    75% {
+        top: 200px;
+    }
+    100% {
+        top: 212px;
+    }
+}
+
+.game-status-panel {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #fff;
+    font-weight: bold;
+}
