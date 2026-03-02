@@ -6,6 +6,7 @@ const initialState = {
         status: 'idle', // 'started'
         curDay: 1,
         curHour: 0,
+        hourId: null,
     },
     character: {
         status: 'idle', // idle / is-sleeping / is-eating / is-walking
@@ -61,7 +62,7 @@ window.onload = function() {
     // 300000 - 1 день // 5мин
     // 12500  - 1 час
     const processHour = () => {
-        return setTimeout(() => {
+        return setTimeout(() => { // return timerId
             if (gameState.game.curHour !== 23) {
                 gameState.game.curHour = gameState.game.curHour + 1;
             } else {
@@ -69,6 +70,8 @@ window.onload = function() {
                 startNewDay();
             }
             curHourSpan.innerHTML = gameState.game.curHour;
+
+            gameState.game.hourId = processHour();
         }, 12500);
     }
 
@@ -83,12 +86,11 @@ window.onload = function() {
         }
     }
 
-
-
     newGameBtn.addEventListener('click', () => {
         newGameBtn.disabled = true;
         exitGameBtn.disabled = false;
         gameState.game.status = 'started';
+        gameState.game.hourId = processHour();
         toggleMenu();
     });
 
