@@ -2,11 +2,17 @@ const initialState = {
     menu: {
         isOpen: false,
     },
+    notification: {
+        isOpen: false,
+    },
     game: {
         status: 'idle', // 'started'
         curDay: 1,
-        curHour: 0,
+        curHour: 5,
         hourId: null,
+        eat: 0,
+        walk: 0,
+        sleep: 0,
     },
     character: {
         status: 'idle', // idle / is-sleeping / is-eating / is-walking
@@ -43,6 +49,21 @@ const routine = {
     23: '',
 }
 
+const notifications = {
+    wantEat: {
+        isOpen: true,
+        text: 'Hey! I want to eat!',
+    },
+    wantWalk: {
+        isOpen: true,
+        text: 'Hey! I want to walk!',
+    },
+    wantSleep: {
+        isOpen: true,
+        text: 'Hey! I want to sleep!',
+    }
+}
+
 let gameState = structuredClone(initialState);
 
 window.onload = function() {
@@ -53,6 +74,8 @@ window.onload = function() {
 
     const curDaySpan = window.document.querySelector('.current-day');
     const curHourSpan = window.document.querySelector('.current-hour');
+    const notificationCloud = window.document.querySelector('.notification-cloud');
+    const notificationTextWrap = window.document.querySelector('.notification-message');
 
     const startNewDay = () => {
         gameState.game.curDay = gameState.game.curDay + 1;
@@ -71,6 +94,15 @@ window.onload = function() {
             }
             curHourSpan.innerHTML = gameState.game.curHour;
 
+            const characterStatus = routine[gameState.game.curHour];
+            const notificationObj = notifications[characterStatus];
+            if (notificationObj) {
+                toggleNotification(notificationObj.isOpen);
+                notificationTextWrap.innerHTML = notificationObj.text;
+            } else {
+                toggleNotification(false);
+            }
+
             gameState.game.hourId = processHour();
         }, 12500);
     }
@@ -86,11 +118,24 @@ window.onload = function() {
         }
     }
 
+    const toggleNotification = (isOpen) => {
+        if (!gameState.notification.isOpen || isOpen) {
+            notificationCloud.className = 'notification-cloud';
+            gameState.notification.isOpen = true;
+        } else {
+            notificationCloud.className = 'notification-cloud is-hidden';
+            gameState.notification.isOpen = false;
+        }
+    }
+
     newGameBtn.addEventListener('click', () => {
         newGameBtn.disabled = true;
         exitGameBtn.disabled = false;
         gameState.game.status = 'started';
+        curDaySpan.innerHTML = 1;
+        curHourSpan.innerHTML = 5;
         gameState.game.hourId = processHour();
+        toggleNotification();
         toggleMenu();
     });
 
