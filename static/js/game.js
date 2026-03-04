@@ -94,8 +94,8 @@ window.onload = function() {
         }
     }
 
-    const toggleNotification = (isOpen) => {
-        if (!gameState.notification.isOpen || isOpen) {
+    const toggleNotification = (isOpen = false) => {
+        if (isOpen) {
             notificationCloud.className = 'notification-cloud';
             gameState.notification.isOpen = true;
         } else {
@@ -104,8 +104,8 @@ window.onload = function() {
         }
     }
 
-    // 300000 - 1 день // 5мин
-    // 12500  - 1 час
+    // 300000 - 1 день // 5мин / 2 = 2,5мин
+    // 12500 / 2 = 6250  - 1 час
     const processHour = () => {
         return setTimeout(() => { // return timerId
             if (gameState.game.curHour !== 23) {
@@ -126,14 +126,23 @@ window.onload = function() {
             if (characterStatus === 'wantSleep') {
                 gameState.game.sleep = 1;
             }
-            if (characterStatus === 'goEat' && gameState.game.eat === 1) {
+            if (characterStatus === 'goEat') {
                 gameState.game.eat = 0;
-                if (gameState.character.delight > 0) {
-                    gameState.character.delight = gameState.character.delight - 25;
-                    delightSpan.innerHTML = `${gameState.character.delight}%`; // gameState.character.delight + '%'
+                if (gameState.game.eat === 1) {
+                    if (gameState.character.delight > 0) {
+                        gameState.character.delight = gameState.character.delight - 25;
+                        delightSpan.innerHTML = `${gameState.character.delight}%`; // gameState.character.delight + '%'
+                    } else {
+                        gameState.character.health = gameState.character.health - 10;
+                        healthSpan.innerHTML = `${gameState.character.health}%`;
+                    }
                 } else {
-                    gameState.character.health = gameState.character.health - 10;
-                    healthSpan.innerHTML = `${gameState.character.health}%`;
+                    if (gameState.character.delight < 100) {
+                        gameState.character.delight = gameState.character.delight + 25;
+                        delightSpan.innerHTML = `${gameState.character.delight}%`; // gameState.character.delight + '%'
+                    } else {
+                        gameState.character.health = gameState.character.health + 10;
+                        healthSpan.innerHTML = `${gameState.character.health}%`;                    }
                 }
             }
             if (characterStatus === 'goWalk' && gameState.game.walk === 1) {
@@ -161,12 +170,12 @@ window.onload = function() {
             if (notificationObj !== undefined) {
                 toggleNotification(notificationObj.isOpen);
                 notificationTextWrap.innerHTML = notificationObj.text;
-            } else if (notificationObj === undefined) {
+            } else {
                 toggleNotification(false);
             }
 
             gameState.game.hourId = processHour();
-        }, 12500);
+        }, 6250);
     }
 
     newGameBtn.addEventListener('click', () => {
@@ -176,7 +185,7 @@ window.onload = function() {
         curDaySpan.innerHTML = 1;
         curHourSpan.innerHTML = 5;
         gameState.game.hourId = processHour();
-        toggleNotification();
+        toggleNotification(true);
         toggleMenu();
     });
 
@@ -201,6 +210,8 @@ window.onload = function() {
             eye.className = 'eye';
             sleepCloud.className = 'sleep-cloud';
         } 
+        gameState.game.sleep = 0;
+        toggleNotification();
     });
 
     const eatBtn = window.document.querySelector('.eat-action');
@@ -215,6 +226,8 @@ window.onload = function() {
             gameState.character.status = 'idle';
             burger.className = 'burger';
         }, 2000);
+        gameState.game.eat = 0;
+        toggleNotification();
     });
 
     const walkBtn = window.document.querySelector('.walk-action');
@@ -232,5 +245,7 @@ window.onload = function() {
             leftLeg.className = 'body-part left-leg';
             rightLeg.className = 'body-part right-leg';
         }, 6000);
+        gameState.game.walk = 0;
+        toggleNotification();
     })
 }
