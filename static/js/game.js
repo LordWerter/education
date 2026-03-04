@@ -24,18 +24,18 @@ const initialState = {
 
 const routine = {
     0: 'startNewDay',
-    1: '',
-    2: '',
-    3: '',
-    4: '',
-    5: '',
+    1: 'idle',
+    2: 'idle',
+    3: 'idle',
+    4: 'idle',
+    5: 'idle',
     6: 'getup',
     7: 'wantEat',
     8: 'goEat',
-    9: '',
+    9: 'idle',
     10: 'wantEat',
     11: 'goEat',
-    12: '',
+    12: 'idle',
     13: 'wantEat',
     14: 'goEat',
     15: 'wantWalk',
@@ -46,7 +46,7 @@ const routine = {
     20: 'goWalk',
     21: 'wantSleep',
     22: 'goSleep',
-    23: '',
+    23: 'idle',
 }
 
 const notifications = {
@@ -72,6 +72,8 @@ window.onload = function() {
     const newGameBtn = window.document.querySelector('.new-game-btn');
     const exitGameBtn = window.document.querySelector('.exit-btn');
 
+    const healthSpan = window.document.querySelector('.health');
+    const delightSpan = window.document.querySelector('.delight');
     const curDaySpan = window.document.querySelector('.current-day');
     const curHourSpan = window.document.querySelector('.current-hour');
     const notificationCloud = window.document.querySelector('.notification-cloud');
@@ -81,32 +83,6 @@ window.onload = function() {
         gameState.game.curDay = gameState.game.curDay + 1;
         curDaySpan.innerHTML = gameState.game.curDay;
     }
-
-    // 300000 - 1 день // 5мин
-    // 12500  - 1 час
-    const processHour = () => {
-        return setTimeout(() => { // return timerId
-            if (gameState.game.curHour !== 23) {
-                gameState.game.curHour = gameState.game.curHour + 1;
-            } else {
-                gameState.game.curHour = 0;
-                startNewDay();
-            }
-            curHourSpan.innerHTML = gameState.game.curHour;
-
-            const characterStatus = routine[gameState.game.curHour];
-            const notificationObj = notifications[characterStatus];
-            if (notificationObj) {
-                toggleNotification(notificationObj.isOpen);
-                notificationTextWrap.innerHTML = notificationObj.text;
-            } else {
-                toggleNotification(false);
-            }
-
-            gameState.game.hourId = processHour();
-        }, 12500);
-    }
-
 
     const toggleMenu = () => {
         if (!gameState.menu.isOpen) {
@@ -126,6 +102,71 @@ window.onload = function() {
             notificationCloud.className = 'notification-cloud is-hidden';
             gameState.notification.isOpen = false;
         }
+    }
+
+    // 300000 - 1 день // 5мин
+    // 12500  - 1 час
+    const processHour = () => {
+        return setTimeout(() => { // return timerId
+            if (gameState.game.curHour !== 23) {
+                gameState.game.curHour = gameState.game.curHour + 1;
+            } else {
+                gameState.game.curHour = 0;
+                startNewDay();
+            }
+            curHourSpan.innerHTML = gameState.game.curHour;
+
+            const characterStatus = routine[gameState.game.curHour];
+            if (characterStatus === 'wantEat') {
+                gameState.game.eat = 1;
+            }
+            if (characterStatus === 'wantWalk') {
+                gameState.game.walk = 1;
+            }
+            if (characterStatus === 'wantSleep') {
+                gameState.game.sleep = 1;
+            }
+            if (characterStatus === 'goEat' && gameState.game.eat === 1) {
+                gameState.game.eat = 0;
+                if (gameState.character.delight > 0) {
+                    gameState.character.delight = gameState.character.delight - 25;
+                    delightSpan.innerHTML = `${gameState.character.delight}%`; // gameState.character.delight + '%'
+                } else {
+                    gameState.character.health = gameState.character.health - 10;
+                    healthSpan.innerHTML = `${gameState.character.health}%`;
+                }
+            }
+            if (characterStatus === 'goWalk' && gameState.game.walk === 1) {
+                gameState.game.walk = 0;
+                if (gameState.character.delight > 0) {
+                    gameState.character.delight = gameState.character.delight - 25;
+                    delightSpan.innerHTML = `${gameState.character.delight}%`;
+                } else {
+                    gameState.character.health = gameState.character.health - 10;
+                    healthSpan.innerHTML = `${gameState.character.health}%`;
+                }
+            }
+            if (characterStatus === 'goSleep' && gameState.game.sleep === 1) {
+                gameState.game.sleep = 0;
+                if (gameState.character.delight > 0) {
+                    gameState.character.delight = gameState.character.delight - 25;
+                    delightSpan.innerHTML = `${gameState.character.delight}%`;
+                } else {
+                    gameState.character.health = gameState.character.health - 10;
+                    healthSpan.innerHTML = `${gameState.character.health}%`;
+                }
+            }
+            const notificationObj = notifications[characterStatus];
+            console.log(`${gameState.game.curHour} - `, notificationObj);
+            if (notificationObj !== undefined) {
+                toggleNotification(notificationObj.isOpen);
+                notificationTextWrap.innerHTML = notificationObj.text;
+            } else if (notificationObj === undefined) {
+                toggleNotification(false);
+            }
+
+            gameState.game.hourId = processHour();
+        }, 12500);
     }
 
     newGameBtn.addEventListener('click', () => {
