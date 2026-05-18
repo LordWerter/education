@@ -1,6 +1,11 @@
 .my-latest-works {
     display: flex;
     flex-direction: column;
+
+    .my-latest-works__title {
+        padding: 36px 12px 12px;
+        font-size: 28px;
+        margin: 0;    }
 }
 
 .my-latest-works__minicards-area {
