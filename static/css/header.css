@@ -7,6 +7,7 @@ header {
   left: 0;
   top: 0;
   right: 0;
+  z-index: 10;
 
   padding: 4px 42px;
   box-sizing: border-box;

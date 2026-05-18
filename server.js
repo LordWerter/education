@@ -4,6 +4,22 @@ const path = require("path");
 
 const routing = require('./routing');
 
+const fetchAllProducts = async () => {
+    const output = await fetch('https://dummyjson.com/products')
+        .then(response => {
+            const output = response.json();
+            return output;
+        });
+
+    console.log('RUNTIME||LOG fetchAllProducts output is: ', output);
+    return output;
+};
+
+const allProductsList = fetchAllProducts();
+
+console.log(allProductsList);
+
+
 http
   .createServer(function (request, response) {
     // console.log("request ", request.url);

@@ -11,7 +11,40 @@ define(function () {
 /**
  * <=== КОНЕЦ Задачи для проверки
  */
-
+/**
+ * До появления SPA создавались MPA(Multiple Page Application)
+ * т.е. все сайты в классическом понимании - это MPA
+ */
+/**
+ * первые фреймворки для создания SPA - Backbone.js(2009/2010), Knockout.js(2010),
+ * Angular v1 (2010), Ember.js(2011), React (2013), Vue.js (2014)
+ * 
+ * На текущий момент основные фреймворки и библиотеки для SPA:
+ * - Angular v21
+ * - React v19
+ * - Vue v3
+ * 
+ * Современный Backend построен на базе SOA(Service-Oriented Arch) или Microservices
+ * Все эти технологии используют в основе компонентный подход
+ * 
+ * 
+ * Основной инструментарий для проекта на React
+ * - Webpack / Rollup / Vite / Rsbuild - бандлер / билдер
+ *   
+ *  Название бандлера |  Browser App | JS library |   UIKit   |
+ *                    |              |            |           |
+ *     Webpack        |      +       |     +      |     +     |
+ *                    |              |            |           |
+ *     Rollup         |      -       |     +      |     +     |
+ *                    |              |            |           |
+ *     Vite           |      +       |     -      |     -     |
+ *                    |              |            |           |
+ *     Rsbuild        |      +       |     -      |     -     |
+ *                    |              |            |           |
+ */
+/**
+ * 
+ */
 
 
     };

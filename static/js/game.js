@@ -61,6 +61,10 @@ const notifications = {
     wantSleep: {
         isOpen: true,
         text: 'Hey! I want to sleep!',
+    },
+    getup: {
+        isOpen: true,
+        text: 'Hello!',
     }
 }
 
@@ -78,6 +82,11 @@ window.onload = function() {
     const curHourSpan = window.document.querySelector('.current-hour');
     const notificationCloud = window.document.querySelector('.notification-cloud');
     const notificationTextWrap = window.document.querySelector('.notification-message');
+
+    const sleepActionBtn = window.document.querySelector('.sleep-action');
+    const eye = window.document.querySelector('.eye');
+    const sleepCloud = window.document.querySelector('.sleep-cloud');
+    const gameOverMsg = window.document.querySelector('.game-over');
 
     const startNewDay = () => {
         gameState.game.curDay = gameState.game.curDay + 1;
@@ -126,43 +135,95 @@ window.onload = function() {
             if (characterStatus === 'wantSleep') {
                 gameState.game.sleep = 1;
             }
+            if (characterStatus === 'getup') {
+                eye.className = 'eye is-hidden';
+                sleepCloud.className = 'sleep-cloud is-hidden';
+            }
             if (characterStatus === 'goEat') {
-                gameState.game.eat = 0;
                 if (gameState.game.eat === 1) {
                     if (gameState.character.delight > 0) {
                         gameState.character.delight = gameState.character.delight - 25;
                         delightSpan.innerHTML = `${gameState.character.delight}%`; // gameState.character.delight + '%'
                     } else {
-                        gameState.character.health = gameState.character.health - 10;
-                        healthSpan.innerHTML = `${gameState.character.health}%`;
+                        if (gameState.character.health > 10) {
+                            gameState.character.health = gameState.character.health - 10;
+                            healthSpan.innerHTML = `${gameState.character.health}%`;
+                        } else {
+                            gameState.character.health = gameState.character.health - 10;
+                            healthSpan.innerHTML = `${gameState.character.health}%`;
+                            gameOverMsg.className = 'game-over';
+                            clearTimeout(gameState.game.hourId);
+                        }
                     }
+                    gameState.game.eat = 0;
                 } else {
                     if (gameState.character.delight < 100) {
                         gameState.character.delight = gameState.character.delight + 25;
                         delightSpan.innerHTML = `${gameState.character.delight}%`; // gameState.character.delight + '%'
                     } else {
-                        gameState.character.health = gameState.character.health + 10;
-                        healthSpan.innerHTML = `${gameState.character.health}%`;                    }
+                        if (gameState.character.health < 100) {
+                            gameState.character.health = gameState.character.health + 10;
+                            healthSpan.innerHTML = `${gameState.character.health}%`;
+                        }
+                    }
                 }
             }
-            if (characterStatus === 'goWalk' && gameState.game.walk === 1) {
-                gameState.game.walk = 0;
-                if (gameState.character.delight > 0) {
-                    gameState.character.delight = gameState.character.delight - 25;
-                    delightSpan.innerHTML = `${gameState.character.delight}%`;
+            if (characterStatus === 'goWalk') {
+                if (gameState.game.walk === 1) {
+                    if (gameState.character.delight > 0) {
+                        gameState.character.delight = gameState.character.delight - 25;
+                        delightSpan.innerHTML = `${gameState.character.delight}%`;
+                    } else {
+                        if (gameState.character.health > 10) {
+                            gameState.character.health = gameState.character.health - 10;
+                            healthSpan.innerHTML = `${gameState.character.health}%`;
+                        } else {
+                            gameState.character.health = gameState.character.health - 10;
+                            healthSpan.innerHTML = `${gameState.character.health}%`;
+                            gameOverMsg.className = 'game-over';
+                            clearTimeout(gameState.game.hourId);
+                        }
+                    }
+                    gameState.game.walk = 0;
                 } else {
-                    gameState.character.health = gameState.character.health - 10;
-                    healthSpan.innerHTML = `${gameState.character.health}%`;
+                    if (gameState.character.delight < 100) {
+                        gameState.character.delight = gameState.character.delight + 25;
+                        delightSpan.innerHTML = `${gameState.character.delight}%`; // gameState.character.delight + '%'
+                    } else {
+                        if (gameState.character.health < 100) {
+                            gameState.character.health = gameState.character.health + 10;
+                            healthSpan.innerHTML = `${gameState.character.health}%`;
+                        }
+                    }
                 }
             }
-            if (characterStatus === 'goSleep' && gameState.game.sleep === 1) {
-                gameState.game.sleep = 0;
-                if (gameState.character.delight > 0) {
-                    gameState.character.delight = gameState.character.delight - 25;
-                    delightSpan.innerHTML = `${gameState.character.delight}%`;
+            if (characterStatus === 'goSleep') {
+                if (gameState.game.sleep === 1) {
+                    if (gameState.character.delight > 0) {
+                        gameState.character.delight = gameState.character.delight - 25;
+                        delightSpan.innerHTML = `${gameState.character.delight}%`;
+                    } else {
+                        if (gameState.character.health > 10) {
+                            gameState.character.health = gameState.character.health - 10;
+                            healthSpan.innerHTML = `${gameState.character.health}%`;
+                        } else {
+                            gameState.character.health = gameState.character.health - 10;
+                            healthSpan.innerHTML = `${gameState.character.health}%`;
+                            gameOverMsg.className = 'game-over';
+                            clearTimeout(gameState.game.hourId);
+                        }
+                    }
+                    gameState.game.sleep = 0;
                 } else {
-                    gameState.character.health = gameState.character.health - 10;
-                    healthSpan.innerHTML = `${gameState.character.health}%`;
+                    if (gameState.character.delight < 100) {
+                        gameState.character.delight = gameState.character.delight + 25;
+                        delightSpan.innerHTML = `${gameState.character.delight}%`; // gameState.character.delight + '%'
+                    } else {
+                        if (gameState.character.health < 100) {
+                            gameState.character.health = gameState.character.health + 10;
+                            healthSpan.innerHTML = `${gameState.character.health}%`;
+                        }
+                    }
                 }
             }
             const notificationObj = notifications[characterStatus];
@@ -199,10 +260,6 @@ window.onload = function() {
     showMenuBtn.addEventListener('click', () => {
         toggleMenu();
     });
-
-    const sleepActionBtn = window.document.querySelector('.sleep-action');
-    const eye = window.document.querySelector('.eye');
-    const sleepCloud = window.document.querySelector('.sleep-cloud');
 
     sleepActionBtn.addEventListener('click', () => {
         if (gameState.character.status === 'idle') {
