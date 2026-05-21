@@ -3,20 +3,20 @@
     flex-direction: column;
 
     .my-latest-works__title {
-        padding: 36px 12px 12px;
+        padding: 0 0 12px;
         font-size: 28px;
-        margin: 0;    }
-}
+        margin: 0;
+    }
 
-.my-latest-works__minicards-area {
-    display: flex;
-    flex-wrap: wrap;
+    .my-latest-works__minicards-area {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 16px;
+    }
 }
 
 .work-minicard {
-    width: calc(100% / 3);
     box-sizing: border-box;
-    padding: 12px;
 }
 
 .work-minicard__preview-img {

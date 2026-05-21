@@ -41,7 +41,7 @@ section {
   box-sizing: border-box;
 
   width: 100%;
-  min-height: 600px;
+  padding: 0 16px 64px;
 }
 
 #root {

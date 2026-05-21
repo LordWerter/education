@@ -13,20 +13,23 @@
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/tech-stack-section.css" />
     <link rel="stylesheet" href="css/latest-works-section.css" />
+    <link rel="stylesheet" href="css/feedbacks.css" />
     <script data-main="js/main" src="js/lib/require.js"></script>    <!-- <script src="./js/lesson2.js"></script> !-->
   </head>
   <body>
     <header class="page-header">
-        <div class="page-header__logo logo">
-          <a href="./"></a>
+        <div class="container">
+          <div class="page-header__logo logo">
+            <a href="./"></a>
+          </div>
+          <nav class="page-header__main-nav main-nav">
+              <menu id="erty-oiuy" class="header-menu">
+                  <li class="header-menu__element is-active"><a href="./about.html">О нас</a></li>
+                  <li class="header-menu__element"><a href="./game.html">Игра</a></li>
+                  <li class="header-menu__element"><a href="./contacts.html">Контакты</a></li>
+              </menu>
+          </nav>
         </div>
-        <nav class="page-header__main-nav main-nav">
-            <menu id="erty-oiuy" class="header-menu">
-                <li class="header-menu__element is-active"><a href="./about.html">О нас</a></li>
-                <li class="header-menu__element"><a href="./game.html">Игра</a></li>
-                <li class="header-menu__element"><a href="./contacts.html">Контакты</a></li>
-            </menu>
-        </nav>
     </header>
     <main>
       <section class="main-banner">
@@ -99,9 +102,34 @@
           </div>
         </div>
       </section>
-      <section id="feedbacks" class="info-block">
-        <div id="parent-node">
-          <div id="point-node">point node</div>
+      <section class="feedbacks">
+        <div class="feedbacks__item feedback is-one">
+          <img class="feedback__author-photo" src="images/feedback-authors/photo1.webp" alt="John Doe" />
+          <p class="feedback__text">
+            This is an awesome course, and I can see making use of all the things discussed, in interviews as well as day-to-day feature development. Evgenii has packed a lot of knowledge in this, which definitely will demand frequent revisits when needed.
+          </p>
+          <h3 class="feedback__author">John Doe</h3>
+        </div>
+        <div class="feedbacks__item feedback">
+          <img class="feedback__author-photo" src="images/feedback-authors/photo2.webp" alt="John Doe" />
+          <p class="feedback__text">
+            This is an awesome course, and I can see making use of all the things discussed, in interviews as well as day-to-day feature development. Evgenii has packed a lot of knowledge in this, which definitely will demand frequent revisits when needed.
+          </p>
+          <h3 class="feedback__author">John Doe</h3>
+        </div>
+        <div class="feedbacks__item feedback">
+          <img class="feedback__author-photo" src="images/feedback-authors/photo3.webp" alt="John Doe" />
+          <p class="feedback__text">
+            This is an awesome course, and I can see making use of all the things discussed, in interviews as well as day-to-day feature development. Evgenii has packed a lot of knowledge in this, which definitely will demand frequent revisits when needed.
+          </p>
+          <h3 class="feedback__author">John Doe</h3>
+        </div>
+        <div class="feedbacks__item feedback">
+          <img class="feedback__author-photo" src="images/feedback-authors/photo4.webp" alt="John Doe" />
+          <p class="feedback__text">
+            This is an awesome course, and I can see making use of all the things discussed, in interviews as well as day-to-day feature development. Evgenii has packed a lot of knowledge in this, which definitely will demand frequent revisits when needed.
+          </p>
+          <h3 class="feedback__author">John Doe</h3>
         </div>
       </section>
     </main>

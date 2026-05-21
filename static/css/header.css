@@ -1,7 +1,6 @@
 header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
 
   position: fixed;
   left: 0;
@@ -9,13 +8,25 @@ header {
   right: 0;
   z-index: 10;
 
-  padding: 4px 42px;
   box-sizing: border-box;
 
   background: #ffffff;
   box-shadow: 0 0 8px #ccc;
 
   width: 100%;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 4px 42px;
+    box-sizing: border-box;
+
+    width: 100%;
+    max-width: 1400px;
+
+  }
 }
 
 .logo {
